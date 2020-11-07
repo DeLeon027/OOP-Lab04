@@ -11,7 +11,7 @@ import it.unibo.oop.lab04.robot.composable.components.*;
  */
 public final class TestComposableRobot {
 
-    private static final int CYCLES = 200;
+    private static final int CYCLES = 200; //non utilizzati per il test
 
     private TestComposableRobot() {
     	
@@ -39,9 +39,9 @@ public final class TestComposableRobot {
     	
     	ComposableRobot robottino = new ComposableRobot("robottino-01");
     	
-    	robottino.atomicBattery = new AtomicBattery(robottino);
-    	robottino.borderNavigator = new BorderNavigator(robottino);
-    	robottino.twoGrippingArms = new TwoGrippingArms(robottino);
+    	robottino.setAtomicBattery(new AtomicBattery(robottino));
+    	robottino.setBorderNavigator(new BorderNavigator(robottino));
+    	robottino.setTwoGrippingArms(new TwoGrippingArms(robottino));
     	
          final var r0pos = robottino + " position";
          final var r0bat = robottino + " battery";
@@ -50,8 +50,23 @@ public final class TestComposableRobot {
 
          System.out.println("----------START---------");
          
+         if(robottino.getBorderNavigator().doOperation()) {
+        	 assertEquality(r0pos,  new RobotPosition(0, 0), robottino.getPosition());
+         } 
+         else { 
+        	 System.out.println("ERRORE NEL METODO");
+         }
          
+         robottino.getTwoGrippingArms().doOperation("pick");
+         assertEquality(r0bat, 1, ((TwoGrippingArms) robottino.getTwoGrippingArms()).count());
+         robottino.getTwoGrippingArms().doOperation("pick");
+         assertEquality(r0bat, 2, ((TwoGrippingArms) robottino.getTwoGrippingArms()).count());
+         robottino.getTwoGrippingArms().doOperation("pick");
+         assertEquality(r0bat, 2, ((TwoGrippingArms) robottino.getTwoGrippingArms()).count());
+         robottino.getTwoGrippingArms().doOperation("drop");
+         assertEquality(r0bat, 1, ((TwoGrippingArms) robottino.getTwoGrippingArms()).count());
          
+         System.out.println("----------END---------");
 
     }
 }

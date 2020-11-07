@@ -30,9 +30,4 @@ public abstract class Component {
 		return robotConnected;
 	}
 	
-	public abstract boolean doOperation();
-	
-	public abstract boolean doOperation(String command);
-
-
 }

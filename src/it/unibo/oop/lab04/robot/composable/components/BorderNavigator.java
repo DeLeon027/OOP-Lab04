@@ -3,8 +3,9 @@ package it.unibo.oop.lab04.robot.composable.components;
 import it.unibo.oop.lab04.robot.base.RobotEnvironment;
 import it.unibo.oop.lab04.robot.composable.Component;
 import it.unibo.oop.lab04.robot.composable.ComposableRobot;
+import it.unibo.oop.lab04.robot.composable.NotControllable;
 
-public class BorderNavigator extends Component {
+public class BorderNavigator extends Component implements NotControllable {
 	
 
 	public BorderNavigator(ComposableRobot robot) {
@@ -17,55 +18,39 @@ public class BorderNavigator extends Component {
 
 		while (this.getRobotConnected().getPosition().getY() != RobotEnvironment.Y_LOWER_LIMIT) {
 			this.getRobotConnected().moveDown();
-			if(this.getRobotConnected().getBatteryLevel()<50) {
-				this.getRobotConnected().atomicBattery.doOperation();
-			}
+			
 		}
 		// Y = 0
 		while (this.getRobotConnected().getPosition().getX() != RobotEnvironment.X_LOWER_LIMIT) {
 			this.getRobotConnected().moveLeft();
-			if(this.getRobotConnected().getBatteryLevel()<50) {
-				this.getRobotConnected().atomicBattery.doOperation();
-			}
+			
 		}
 
-		int i = 0;
-
-		for (i = 0; i <= RobotEnvironment.X_UPPER_LIMIT; i++) {
+		for (int i = 0; i <= RobotEnvironment.X_UPPER_LIMIT; i++) {
 			this.getRobotConnected().moveRight();
-			if(this.getRobotConnected().getBatteryLevel()<50) {
-				this.getRobotConnected().atomicBattery.doOperation();
-			}
+			System.out.println("ciclo 1");
+			
 		}
-		for (i = 0; i <= RobotEnvironment.Y_UPPER_LIMIT; i++) {
+		for (int i = 0; i <= RobotEnvironment.Y_UPPER_LIMIT; i++) {
 			this.getRobotConnected().moveUp();
-			if(this.getRobotConnected().getBatteryLevel()<50) {
-				this.getRobotConnected().atomicBattery.doOperation();
-			}
+			System.out.println("ciclo 2");
+			
 		}
-		for (i = 0; i <= RobotEnvironment.X_LOWER_LIMIT; i++) {
+		for (int i = 0; i <= RobotEnvironment.X_UPPER_LIMIT; i++) {
 			this.getRobotConnected().moveLeft();
-			if(this.getRobotConnected().getBatteryLevel()<50) {
-				this.getRobotConnected().atomicBattery.doOperation();
-			}
+			System.out.println("ciclo 3");
+			
 		}
-		for (i = 0; i <= RobotEnvironment.Y_LOWER_LIMIT; i++) {
+		for (int i = 0; i <= RobotEnvironment.Y_UPPER_LIMIT; i++) {
 			this.getRobotConnected().moveDown();
-			if(this.getRobotConnected().getBatteryLevel()<50) {
-				this.getRobotConnected().atomicBattery.doOperation();
-			}
+			System.out.println("ciclo 4");
+			
 		}
 
 		if (this.getRobotConnected().getPosition().getY() == 0 && this.getRobotConnected().getPosition().getX() == 0) {
 			return true;
 		}
 
-		return false;
-	}
-
-	@Override
-	public boolean doOperation(String command) {
-		System.out.println("IL NAVIGATORE DI CONFINE NON ACCETTA COMANDI!");
 		return false;
 	}
 

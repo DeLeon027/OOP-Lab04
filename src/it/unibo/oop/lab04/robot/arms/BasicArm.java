@@ -27,7 +27,7 @@ public class BasicArm {
 		grabbing = false;
 	}
 
-	public double getConsuptionForPickUO() {
+	public double getConsuptionForPickUp() {
 		return COST_OF_PICKUP;
 	}
 	

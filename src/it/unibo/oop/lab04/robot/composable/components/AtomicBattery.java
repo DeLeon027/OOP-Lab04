@@ -2,8 +2,9 @@ package it.unibo.oop.lab04.robot.composable.components;
 
 import it.unibo.oop.lab04.robot.composable.Component;
 import it.unibo.oop.lab04.robot.composable.ComposableRobot;
+import it.unibo.oop.lab04.robot.composable.NotControllable;
 
-public class AtomicBattery extends Component {
+public class AtomicBattery extends Component implements NotControllable {
 	
 	
 	public AtomicBattery(ComposableRobot robot) {
@@ -13,12 +14,6 @@ public class AtomicBattery extends Component {
 	@Override
 	public boolean doOperation() {
 		this.getRobotConnected().recharge();
-		return false;
-	}
-
-	@Override
-	public boolean doOperation(String command) {
-		System.out.println("OPERAZIONE NON SUPPORTATA DALLA BATTERIA ATOMICA!");
 		return false;
 	}
 
